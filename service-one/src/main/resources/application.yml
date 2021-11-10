@@ -33,19 +33,19 @@ spring:
     - org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
   cloud:
     consul:
-      host: '<CONSUL_HOST>'
+      host: consul-server
       port: 8500
       discovery:
-        hostName: '<HOSTNAME>'
+        hostName: service-one
         instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
         healthCheckPath: ${management.contextPath}/health
         healthCheckInterval: 15s
-  data.mongodb.uri: 'mongodb://<MONGODB_HOST>:27017'
+  data.mongodb.uri: mongodb://service-one-db:27017/service-one
   rabbitmq:
-    host: '<RABBITMQ_HOST>'
+    host: rabbitmq
     port: 5672
-    username: '<RABBITMQ_USER>'
-    password: '<RABBITMQ_PASSWORD>'
+    username: rabbitmq
+    password: rabbitmq
     virtualHost: /
 
 # logstash.servers: logstash:5000

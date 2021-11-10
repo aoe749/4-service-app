@@ -34,19 +34,19 @@ spring:
     - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
   cloud:
     consul:
-      host: <consul FQDN/IP>
+      host: consul-server
       port: 8500
       discovery:
-        hostName: <application host FQDN/IP>
+        hostName: service-two
         instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
         healthCheckPath: ${management.contextPath}/health
         healthCheckInterval: 15s
     loadbalancer.ribbon.enabled: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://<MySQL DB FQDN/IP>/<DB name>?createDatabaseIfNotExist=true
-    username: <DB username>
-    password: <DB password>
+    url: jdbc:mysql://service-two-db/service-two?createDatabaseIfNotExist=true
+    username: service-two
+    password: service-two
   jpa:
     hibernate:
       ddl-auto: create
@@ -54,14 +54,14 @@ spring:
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
   rabbitmq:
-    host: <RabbitMQ FQDN/IP>
+    host: rabbitmq
     port: 5672
-    username: <RabbitMQ username>
-    password: <RabbitMQ password>
+    username: rabbitmq
+    password: rabbitmq
     virtualHost: /
 
-logstash:
-  servers: <Logstash FQDN/IP>:5000
+# logstash:
+#   servers: <Logstash FQDN/IP>:5000
 
 logging:
   file: service-two-application.log
